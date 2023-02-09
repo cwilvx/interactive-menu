@@ -1,0 +1,88 @@
+// global styles
+
+.ellip {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.ellip2 {
+  word-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.t-center {
+  text-align: center;
+}
+
+.rounded {
+  border-radius: 1rem;
+}
+
+.rounded-sm {
+  border-radius: $small;
+}
+
+.rounded-md {
+  border-radius: $medium;
+}
+
+.circular {
+  border-radius: 10rem;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+button {
+  border: none;
+  font-size: 1.2rem;
+  //   font-size: 0.9rem !important;
+//   color: inherit;
+  border-radius: $small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.25rem;
+  padding: 0 $small;
+
+  background-color: $darkblue;
+  color: $white;
+//   border: solid 1px $gray3;
+  cursor: pointer;
+
+  svg {
+    transition: all 0.2s;
+  }
+
+  &:active {
+    svg {
+      transform: scale(0.75);
+    }
+  }
+
+  &:hover {
+    // background-color: $darkestblue;
+    // border: solid 1px $darkblue;
+  }
+}
+
+.btn-active {
+  background-color: $darkestblue;
+  border: solid 1px $darkblue;
+}
+
+.btn-disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

@@ -1,13 +1,16 @@
 <template>
-  <h1>{{ store.getCountPlusRandom }}</h1>
+  <Header />
+  
+  <Band />
+  <ItemList />
 </template>
 
 <script setup lang="ts">
-import { useSampleStore } from "@/stores/sample";
-
-const store = useSampleStore();
-
-setInterval(() => {
-  store.incrementCount();
-}, 1000);
+import Header from "@/components/Home/Header.vue";
+import ItemList from "@/components/Home/ItemList.vue";
+import Band from "@/components/Home/Band.vue";
 </script>
+
+<style lang="scss">
+
+</style>
