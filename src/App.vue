@@ -1,17 +1,19 @@
 <template>
-  <main>
+  <div id="page-content">
+    <NavBar />
     <RouterView />
-  </main>
+  </div>
   <footer>
     <p class="t-center"><b>Powered by Fizma Africa</b></p>
   </footer>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import NavBar from "./components/NavBar.vue";
+</script>
 
 <style lang="scss">
-main {
-  // border: solid 1px red;
+#page-content {
   max-width: 1140px;
   margin: 0 auto;
 }

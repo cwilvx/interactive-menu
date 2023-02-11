@@ -46,9 +46,9 @@
 
 button {
   border: none;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   //   font-size: 0.9rem !important;
-//   color: inherit;
+  //   color: inherit;
   border-radius: $small;
   display: flex;
   align-items: center;
@@ -56,13 +56,14 @@ button {
   height: 2.25rem;
   padding: 0 $small;
 
-  background-color: $darkblue;
+  background-color: $darkestblue;
   color: $white;
-//   border: solid 1px $gray3;
+  //   border: solid 1px $gray3;
   cursor: pointer;
 
   svg {
     transition: all 0.2s;
+    scale: 0.75;
   }
 
   &:active {
@@ -71,10 +72,10 @@ button {
     }
   }
 
-  &:hover {
-    // background-color: $darkestblue;
-    // border: solid 1px $darkblue;
-  }
+  // &:hover {
+  // background-color: $darkestblue;
+  // border: solid 1px $darkblue;
+  // }
 }
 
 .btn-active {

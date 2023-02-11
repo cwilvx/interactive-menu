@@ -1,6 +1,5 @@
 <template>
   <Header />
-  
   <Band />
   <ItemList />
 </template>

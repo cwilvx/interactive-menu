@@ -1,7 +1,13 @@
 <template>
-  <div class="item-card rounded">
+  <RouterLink
+    class="item-card rounded"
+    :to="{
+      name: Routes.Product,
+      params: { id: 1 },
+    }"
+  >
     <div class="image">
-      <CartSvg class="circular" />
+      <CartSvg class="circular" @click.stop.prevent="() => {}" />
       <img class="rounded-sm" :src="item.image" alt="" />
     </div>
     <div class="info">
@@ -13,12 +19,13 @@
       </div>
       <p class="ellip desc">{{ item.description }}</p>
     </div>
-  </div>
+  </RouterLink>
 </template>
 
 <script setup lang="ts">
 import { Item } from "@/interfaces";
 import CartSvg from "@/assets/icons/cart.svg";
+import { Routes } from "@/router";
 
 defineProps<{
   item: Item;
@@ -31,6 +38,8 @@ defineProps<{
   padding: 1rem;
   border: solid 1px $black;
   transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  color: $black;
 
   .image {
     position: relative;
