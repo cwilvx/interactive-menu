@@ -12,7 +12,7 @@
 <style lang="scss">
 main {
   // border: solid 1px red;
-  max-width: 1240px;
+  max-width: 1140px;
   margin: 0 auto;
 }
 
