@@ -2,7 +2,7 @@
   <div class="page-band">
     <h2 class="page-title">What can we serve you today?</h2>
     <div class="search-input">
-      <input type="text" placeholder="Search through our 10 meals" />
+      <input type="text" placeholder="bon appétit?" />
       <button>Search</button>
     </div>
   </div>
@@ -26,7 +26,7 @@
 
   input {
     padding: $small 1rem;
-    border: solid 1px;
+    border: solid 2px $theme;
     border-radius: 0.5rem;
     outline: none;
     font-size: 1.2rem;
@@ -39,7 +39,6 @@
 }
 
 .page-title {
-  //   padding-left: 2rem;
   width: max-content;
 }
 </style>

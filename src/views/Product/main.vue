@@ -82,17 +82,20 @@ const item = computed(
     .price {
       margin: 0;
       color: white;
-      border: solid 1px $gray2;
       padding: $small 1rem;
       border-radius: $small;
-      background-color: $gray2;
+      // background-color: $theme;
+      color: $theme;
+      border: solid 2px $theme;
+      width: max-content;
+      border-radius: 20rem;
     }
 
     .add-to-cart {
       width: 100%;
       margin-top: 2rem;
       height: 3rem;
-      background-color: $black;
+      background-color: $theme2;
     }
   }
 }

@@ -72,11 +72,11 @@ defineProps<{
 
   svg {
     position: absolute;
-    bottom: -1rem;
-    right: 1rem;
+    bottom: 2rem;
+    right: 2rem;
 
     padding: 1rem;
-    background-color: $theme;
+    background-color: black;
     color: $white;
     opacity: 0;
     transform: translateY(1rem);

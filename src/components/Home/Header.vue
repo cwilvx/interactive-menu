@@ -10,7 +10,8 @@
       </RouterLink>
     </div>
     <div class="info">
-      <h1>McKimatas<VerifiedSVG /></h1>
+      <h1 class="company-name">McKimatas<VerifiedSVG /></h1>
+      <br>
       <p><i>🍎 Nous vendons de la nourriture de merde, amusez-vous 🌟🥂</i></p>
     </div>
   </header>
@@ -31,6 +32,7 @@ import VerifiedSVG from "@/assets/icons/verified.svg";
 
   h1 {
     margin: 0;
+    color: $theme;
 
     svg {
       margin-bottom: -$smaller;
@@ -39,6 +41,7 @@ import VerifiedSVG from "@/assets/icons/verified.svg";
 
   p {
     margin: 0;
+    color: $theme;
   }
 
   img {
@@ -47,7 +50,7 @@ import VerifiedSVG from "@/assets/icons/verified.svg";
     aspect-ratio: 1;
     object-fit: cover;
     object-position: center;
-    border: solid 1px rgb(219, 219, 219);
+    border: solid 5px $theme2;
   }
 }
 </style>
