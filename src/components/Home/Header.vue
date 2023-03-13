@@ -1,18 +1,17 @@
 <template>
   <header id="home-header">
     <div class="image">
-      <img
-        class="circular"
-        src="https://res.cloudinary.com/practicaldev/image/fetch/s--ZUMyUgWZ--/c_imagga_scale,f_auto,fl_progressive,h_1080,q_auto,w_1080/https://dev-to-uploads.s3.amazonaws.com/i/am6lv2x37bole6x4poz3.jpg"
-        alt=""
-      />
+      <RouterLink to="/">
+        <img
+          class="circular"
+          src="https://png.pngtree.com/png-vector/20190130/ourlarge/pngtree-hand-drawn-cute-cartoon-burger-with-food-elements-elementlovely-foodcartoon-foodhand-png-image_613521.jpg"
+          alt=""
+        />
+      </RouterLink>
     </div>
     <div class="info">
-      <h1>Google Pixel Kenya <VerifiedSVG /></h1>
-      <p>
-        The official Google Pixel store in Kenya. Find the latest Google Pixel
-        phones and accessories.
-      </p>
+      <h1>McKimatas<VerifiedSVG /></h1>
+      <p><i>🍎 Nous vendons de la nourriture de merde, amusez-vous 🌟🥂</i></p>
     </div>
   </header>
 </template>
@@ -31,9 +30,15 @@ import VerifiedSVG from "@/assets/icons/verified.svg";
   padding: 2rem;
 
   h1 {
+    margin: 0;
+
     svg {
       margin-bottom: -$smaller;
     }
+  }
+
+  p {
+    margin: 0;
   }
 
   img {

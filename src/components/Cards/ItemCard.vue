@@ -1,23 +1,22 @@
 <template>
   <RouterLink
-    class="item-card rounded"
+    class="item-card"
     :to="{
       name: Routes.Product,
-      params: { id: 1 },
+      params: { id: item.id },
     }"
   >
     <div class="image">
       <CartSvg class="circular" @click.stop.prevent="() => {}" />
-      <img class="rounded-sm" :src="item.image" alt="" />
+      <img class="rounded" :src="item.image" alt="" />
     </div>
     <div class="info">
-      <h3>
+      <h4 class="ellip">
         <b>{{ item.name }}</b>
-      </h3>
-      <div>
+      </h4>
+      <h5>
         KSh <b>{{ Math.round(Math.random() * 10000) }}.00</b>
-      </div>
-      <p class="ellip desc">{{ item.description }}</p>
+      </h5>
     </div>
   </RouterLink>
 </template>
@@ -34,12 +33,18 @@ defineProps<{
 
 <style lang="scss">
 .item-card {
-  //   border: solid 1px;
-  padding: 1rem;
-  border: solid 1px $black;
-  transition: all 0.2s ease-in-out;
   text-decoration: none;
   color: $black;
+  border: solid 1px transparent;
+
+  h4,
+  h5 {
+    margin: $smaller 0;
+  }
+
+  h5 {
+    opacity: 0.75;
+  }
 
   .image {
     position: relative;
@@ -48,7 +53,7 @@ defineProps<{
       width: 100%;
       aspect-ratio: 1;
       object-position: center;
-      object-fit: contain;
+      object-fit: cover;
     }
   }
 

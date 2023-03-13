@@ -5,12 +5,10 @@
       <div class="cart">
         <button>
           <CartSvg class="circular" />
-          Review cart
+          Review order
+          <div class="counter rounded">9</div>
         </button>
-        <div class="counter rounded">9</div>
       </div>
-
-      <button>Checkout</button>
     </div>
   </nav>
 </template>
@@ -35,15 +33,15 @@ nav {
 
     button {
       background-color: transparent;
-      border: solid 1px $green;
-      color: $green;
+      border: solid 1px $black;
+      color: $black;
 
       svg {
         scale: 0.75;
       }
 
       &:hover {
-        background-color: $green;
+        background-color: $black;
         color: $white;
       }
     }

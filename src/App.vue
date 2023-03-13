@@ -14,8 +14,9 @@ import NavBar from "./components/NavBar.vue";
 
 <style lang="scss">
 #page-content {
-  max-width: 1140px;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 3rem;
 }
 
 footer {

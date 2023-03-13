@@ -1,8 +1,8 @@
 <template>
   <div class="page-band">
-    <h2 class="page-title">All products</h2>
+    <h2 class="page-title">What can we serve you today?</h2>
     <div class="search-input">
-      <input type="text" placeholder="Search for products" />
+      <input type="text" placeholder="Search through our 10 meals" />
       <button>Search</button>
     </div>
   </div>
