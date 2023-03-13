@@ -3,13 +3,12 @@
     <NavBar />
     <RouterView />
   </div>
-  <footer>
-    <p class="t-center"><b>Powered by Fizma Africa</b></p>
-  </footer>
+  <AppFooter />
 </template>
 
 <script setup lang="ts">
 import NavBar from "./components/NavBar.vue";
+import AppFooter from "./components/Footer.vue";
 </script>
 
 <style lang="scss">
