@@ -2,11 +2,29 @@
   <div class="page-band">
     <h2 class="page-title">What can we serve you today?</h2>
     <div class="search-input">
-      <input type="text" placeholder="bon appétit?" />
-      <button>Search</button>
+      <input
+        type="text"
+        placeholder="bon appétit?"
+        @change="submitQuery"
+        v-model="query"
+      />
+      <button @click="submitQuery">Search</button>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+
+const query = ref("");
+const emit = defineEmits<{
+  (event: "updateQuery", query: string): void;
+}>();
+
+function submitQuery() {
+  emit("updateQuery", query.value);
+}
+</script>
 
 <style lang="scss">
 .page-band {
@@ -14,7 +32,6 @@
   grid-template-columns: 1fr max-content;
   gap: 1rem;
   align-items: center;
-  //   outline: solid 1px;
   margin: 1rem 0;
 
   .search-input {
