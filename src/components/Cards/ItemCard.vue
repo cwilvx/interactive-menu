@@ -7,7 +7,10 @@
     }"
   >
     <div class="image">
-      <CartSvg class="circular" @click.stop.prevent="() => {}" />
+      <CartSvg
+        class="circular"
+        @click.sptop.prevent="store.addOrder({ ...item, count: 1 })"
+      />
       <img class="rounded" :src="item.image" alt="" />
     </div>
     <div class="info">
@@ -22,13 +25,17 @@
 </template>
 
 <script setup lang="ts">
-import { Item } from "@/interfaces";
-import CartSvg from "@/assets/icons/cart.svg";
 import { Routes } from "@/router";
+import { Item } from "@/interfaces";
+import useOrderStore from "@/stores/orders";
+
+import CartSvg from "@/assets/icons/cart.svg";
 
 defineProps<{
   item: Item;
 }>();
+
+const store = useOrderStore();
 </script>
 
 <style lang="scss">

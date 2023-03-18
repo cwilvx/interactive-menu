@@ -8,6 +8,15 @@
       :item="item"
     />
   </div>
+  <h3
+    class="no-items"
+    v-if="
+      !items.filter((item) => item.name.toLowerCase().indexOf(query) !== -1)
+        .length
+    "
+  >
+  😿 No meals found for your search
+  </h3>
 </template>
 
 <!-- implement fuzzy search -->
@@ -26,5 +35,9 @@ defineProps<{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   gap: 4rem 2rem;
+
+  .no-items {
+    border: solid;
+  }
 }
 </style>

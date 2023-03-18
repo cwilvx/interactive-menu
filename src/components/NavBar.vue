@@ -2,19 +2,24 @@
   <nav>
     <div class="right"></div>
     <div class="left">
-      <div class="cart">
+      <RouterLink to="/review" class="cart">
         <button>
           <CartSvg class="circular" />
           Review order
-          <div class="counter rounded">9</div>
+          <div class="counter rounded">
+            {{ store.orderCount }}
+          </div>
         </button>
-      </div>
+      </RouterLink>
     </div>
   </nav>
 </template>
 
 <script setup lang="ts">
 import CartSvg from "@/assets/icons/cart.svg";
+import useOrderStore from "@/stores/orders";
+
+const store = useOrderStore();
 </script>
 
 <style lang="scss">
@@ -30,6 +35,7 @@ nav {
 
   .cart {
     position: relative;
+    text-decoration: none;
 
     button {
       background-color: transparent;

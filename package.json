@@ -5,13 +5,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "serve": "vite preview"
   },
   "dependencies": {
     "@vueuse/core": "^9.13.0",
     "@vueuse/integrations": "^9.13.0",
     "fuse.js": "^6.6.2",
-    "pinia": "^2.0.17",
+    "pinia": "^2.0.33",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",
     "vue": "^3.2.45",

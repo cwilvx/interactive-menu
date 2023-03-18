@@ -29,10 +29,21 @@
               'More fish',
             ]"
           />
+          <label for="order_count"><b>How many meals?</b></label>
+          <input
+            type="number"
+            name="order_count"
+            class="order_count rounded-sm"
+            v-model="order_count"
+            placeholder="How many?"
+          />
         </section>
 
-        <button class="add-to-cart">
-          <CartSvg /> Add to orders | Ksh 1000
+        <button
+          class="add-to-cart"
+          @click.prevent.stop="store.addOrder({ ...item, count: order_count })"
+        >
+          <CartSvg /> Add to orders | Ksh {{ 1000 * order_count }}
         </button>
       </div>
     </div>
@@ -40,14 +51,20 @@
 </template>
 
 <script setup lang="ts">
-import Header from "@/components/Home/Header.vue";
-import CartSvg from "@/assets/icons/cart.svg";
+import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
+
 import foods from "@/data/foods";
-import { computed } from "vue";
+import useOrderStore from "@/stores/orders";
+
+import CartSvg from "@/assets/icons/cart.svg";
+import Header from "@/components/Home/Header.vue";
 import Ingredients from "@/components/Product/Ingredients.vue";
 
 const route = useRoute();
+const store = useOrderStore();
+
+const order_count = ref(1);
 
 const item = computed(
   () => foods.filter((f, index) => f.id.toString() == route.params.id)[0]
@@ -61,6 +78,19 @@ const item = computed(
     grid-template-columns: 1fr;
     min-height: 30rem;
     gap: 2rem;
+  }
+
+  .order_count {
+    height: 2rem;
+    padding: $small;
+    outline: none;
+    border: solid $theme;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  label {
+    color: $black;
   }
 
   .gallery {

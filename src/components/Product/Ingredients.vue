@@ -13,14 +13,14 @@
     <h4>Optional ingredients</h4>
     <ul>
       <li
-        class="rounded-sm"
+        class="rounded-sm optional-ing"
         v-for="ingredient in ingredients.slice(-3)"
         :key="ingredient"
       >
-        {{ ingredient }}
+        {{ ingredient }} ✖
       </li>
     </ul>
-    <button class="modify-ings">Modify ingredients</button>
+    <!-- <button class="modify-ings">Modify ingredients</button> -->
   </div>
 </template>
 
@@ -34,6 +34,10 @@ defineProps<{
 .meal-ingredients {
   border: solid 1px $brown;
   padding: 1rem;
+
+  .optional-ing {
+    cursor: pointer;
+  }
 
   h3 {
     font-size: 1.5rem;
