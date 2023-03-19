@@ -7,7 +7,7 @@
       alt="Author avatar"
     />
     <p>
-      Designed and built with 💖 and 26 mugs of coffee by
+      Designed and built with 💖 and a few mugs of coffee by
       <a href="https://github.com/geoffrey45">Mungai Njoroge</a>
     </p>
   </footer>

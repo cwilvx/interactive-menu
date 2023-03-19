@@ -3,30 +3,31 @@
     <AppHeader />
     <main>
       <h2 class="review-order-heading">
-        Your Orders <span>Ksh {{ store.totalPrice }}</span>
+        Your Orders ({{ store.orderCount }}) <span>{{ formatPrice(store.totalPrice) }}</span>
       </h2>
       <hr />
       <div class="order-list">
         <OrderCard
-          v-for="order in items.splice(0, 3)"
+          v-for="(order, index) in store.allOrders"
           :key="order.id"
-          :order="order"
+          :item="order"
+          :index="index"
         />
       </div>
-      <div class="total-price t-center">
-        Total: Ksh <b>{{ store.totalPrice }}</b>
+      <div class="no-items" v-if="!store.allOrders.length">No Orders</div>
+      <div class="total-price" :class="store.totalPrice ? 't-center': ''">
+        Total: <b>{{ formatPrice(store.totalPrice) }}</b>
       </div>
     </main>
-    <!-- <hr /> -->
-    <button class="checkout" @click="takeTableNo">Make order</button>
+    <button v-if="store.orderCount" class="checkout" @click="takeTableNo">Make order</button>
   </div>
 </template>
 
 <script setup lang="ts">
 import AppHeader from "@/components/Home/Header.vue";
-import useOrderStore from "@/stores/orders";
 import OrderCard from "@/components/ReviewOrders/OrderCard.vue";
-import items from "@/data/foods";
+import useOrderStore from "@/stores/orders";
+import formatPrice from "@/utils/formatPrice";
 
 const store = useOrderStore();
 
@@ -57,6 +58,7 @@ function takeTableNo() {
 
   .checkout {
     width: 100%;
+    height: 3rem;
     cursor: pointer;
   }
 }

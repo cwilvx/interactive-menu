@@ -1,4 +1,6 @@
 import { Item } from "@/interfaces";
+import calcPrice from "@/utils/calcPrice";
+import ingredients from "./ingredients";
 
 export default [
   {
@@ -64,4 +66,10 @@ export default [
     description:
       "Dreamy flatwhite coffee with perfect latte art: This expertly crafted flatwhite coffee is a dreamy and indulgent treat, complete with perfect latte art on top. It's the perfect pick-me-up for coffee lovers looking for a luxurious and satisfying caffeine fix.",
   },
-].map((f, index) => ({ ...f, id: index })) as Item[];
+].map((f, index) => ({
+  ...f,
+  id: index,
+  price: calcPrice(f.name),
+  ingredients: ingredients[index].ingredients,
+  optional_ingredients: ingredients[index].optional_ingredients,
+})) as Item[];

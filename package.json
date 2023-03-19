@@ -12,6 +12,7 @@
     "@vueuse/integrations": "^9.13.0",
     "fuse.js": "^6.6.2",
     "pinia": "^2.0.33",
+    "pinia-plugin-persistedstate": "^2.1.1",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",
     "vue": "^3.2.45",

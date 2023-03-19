@@ -1,21 +1,47 @@
 <template>
   <div class="order-card rounded">
-    <div class="image">
-      <img :src="order.image" alt="order image" class="rounded-sm" />
-    </div>
+    <RouterLink
+      :to="{
+        name: Routes.Product,
+        params: {
+          id: item.id,
+        },
+      }"
+      class="image"
+    >
+      <img :src="item.image" alt="order image" class="rounded-sm" />
+    </RouterLink>
     <div class="desc">
-      <h4>{{ order.name }}</h4>
+      <h4>
+        <RouterLink
+          :to="{
+            name: Routes.Product,
+            params: {
+              id: item.id,
+            },
+          }"
+          class="image"
+        >
+          {{ item.name }}</RouterLink
+        >
+      </h4>
+      <p v-if="item.selected_ingredients.length">
+        with
+        <span>{{ listToString(item.selected_ingredients) }}</span>
+      </p>
       <div class="order-count">
-        <button>−</button>
+        <button @click="store.decrementCount(index)">−</button>
         <div>
-          <b>{{ order.count }}5</b>
+          <b>{{ item.count }}</b>
         </div>
-        <button>+</button>
+        <button @click="store.incremementCount(index)">+</button>
       </div>
-      <h5>Ksh <span class="price">4000</span></h5>
+      <h5>
+        <span class="price">{{ getTotalPriceStr(item) }}</span>
+      </h5>
     </div>
     <div class="remove">
-      <DeleteSvg />
+      <DeleteSvg @click="store.removeOrder(index)" />
     </div>
   </div>
 </template>
@@ -23,9 +49,16 @@
 <script setup lang="ts">
 import DeleteSvg from "@/assets/icons/delete.svg";
 import { Item } from "@/interfaces";
+import { Routes } from "@/router";
+import useOrderStore from "@/stores/orders";
+import listToString from "@/utils/listToString";
+import getTotalPriceStr from "@/utils/getTotalPrice";
+
+const store = useOrderStore();
 
 defineProps<{
-  order: Item;
+  item: Item;
+  index: number;
 }>();
 </script>
 
@@ -35,6 +68,18 @@ defineProps<{
   grid-template-columns: 1fr 2fr 2rem;
   align-items: center;
   border: solid transparent;
+
+  p {
+    margin-top: -1rem;
+    font-size: 14px;
+    font-weight: bold;
+    color: $theme2;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
   .order-count {
     display: grid;

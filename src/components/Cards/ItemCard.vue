@@ -9,7 +9,9 @@
     <div class="image">
       <CartSvg
         class="circular"
-        @click.sptop.prevent="store.addOrder({ ...item, count: 1 })"
+        @click.sptop.prevent="
+          store.addOrder({ ...item, count: 1, selected_ingredients: [] })
+        "
       />
       <img class="rounded" :src="item.image" alt="" />
     </div>
@@ -18,7 +20,7 @@
         <b>{{ item.name }}</b>
       </h4>
       <h5>
-        KSh <b>{{ Math.round(Math.random() * 10000) }}.00</b>
+        <b>{{ formatPrice(item.price) }}</b>
       </h5>
     </div>
   </RouterLink>
@@ -30,6 +32,7 @@ import { Item } from "@/interfaces";
 import useOrderStore from "@/stores/orders";
 
 import CartSvg from "@/assets/icons/cart.svg";
+import formatPrice from "@/utils/formatPrice";
 
 defineProps<{
   item: Item;

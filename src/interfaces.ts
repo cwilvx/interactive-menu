@@ -4,5 +4,8 @@ export interface Item {
   price: number;
   description: string;
   image: string;
-  count?: number;
+  count: number;
+  ingredients: string[];
+  optional_ingredients: string[];
+  selected_ingredients: string[];
 }

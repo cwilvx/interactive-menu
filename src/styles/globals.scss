@@ -58,7 +58,6 @@ button {
 
   background-color: $theme;
   color: $white;
-  //   border: solid 1px $gray3;
   cursor: pointer;
 
   svg {
@@ -72,10 +71,9 @@ button {
     }
   }
 
-  // &:hover {
-  // background-color: $darkestblue;
-  // border: solid 1px $darkblue;
-  // }
+  &:hover {
+  background-color: $theme2;
+  }
 }
 
 .btn-active {
