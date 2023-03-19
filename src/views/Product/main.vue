@@ -1,6 +1,5 @@
 <template>
   <div class="product-page">
-    <Header />
     <div class="product-display">
       <div class="gallery rounded">
         <div class="image">
@@ -56,7 +55,6 @@ import foods from "@/data/foods";
 import useOrderStore from "@/stores/orders";
 
 import CartSvg from "@/assets/icons/cart.svg";
-import Header from "@/components/Home/Header.vue";
 import Ingredients from "@/components/Product/Ingredients.vue";
 import { Item } from "@/interfaces";
 import calcIngredientPrice from "@/utils/calcPrice";

@@ -3,6 +3,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 const HomeView = () => import("@/views/Home");
 const ProductView = () => import("@/views/Product");
 const ReviewOrders = () => import("@/views/ReviewOrders");
+const SelectTable = () => import("@/views/SelectTable");
 
 const HomeRoute = {
   path: "/",
@@ -22,7 +23,18 @@ const ReviewOrdersRoute = {
   component: ReviewOrders,
 };
 
-const routes: RouteRecordRaw[] = [HomeRoute, ProductRoute, ReviewOrdersRoute];
+const SelectTableRoute = {
+  path: "/table",
+  name: "SelectTable",
+  component: SelectTable,
+};
+
+const routes: RouteRecordRaw[] = [
+  HomeRoute,
+  ProductRoute,
+  ReviewOrdersRoute,
+  SelectTableRoute,
+];
 
 const router = createRouter({
   history: createWebHistory(),
@@ -33,6 +45,7 @@ const Routes = {
   Home: HomeRoute.name,
   Product: ProductRoute.name,
   ReviewOrders: ReviewOrdersRoute.name,
+  SelectTable: SelectTableRoute.name,
 };
 
 export { router, Routes };

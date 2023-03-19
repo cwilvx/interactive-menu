@@ -1,6 +1,7 @@
 <template>
   <div id="page-content">
     <NavBar />
+    <Header />
     <RouterView />
   </div>
   <AppFooter />
@@ -8,6 +9,7 @@
 
 <script setup lang="ts">
 import NavBar from "./components/NavBar.vue";
+import Header from "./components/Home/Header.vue";
 import AppFooter from "./components/Footer.vue";
 </script>
 

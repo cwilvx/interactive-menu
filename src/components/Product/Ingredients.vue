@@ -2,7 +2,7 @@
   <div class="meal-ingredients rounded">
     <h3>Ingredients</h3>
     <p>
-      These ingredients are necessary for this meal. They have to be in the
+      These ingredients are required. They really have to be in the
       meal.
     </p>
     <ul>
@@ -29,7 +29,7 @@
       </li>
     </ul>
     <h3>Optional ingredients</h3>
-    <p>These ingredients can be included at your cost.</p>
+    <p>... these, you can get rid of at an extra cost.</p>
     <ul>
       <li
         class="rounded-sm optional-ing"
