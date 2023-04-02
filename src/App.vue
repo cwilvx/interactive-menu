@@ -17,7 +17,6 @@ import AppFooter from "./components/Footer.vue";
 #page-content {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 3rem;
 }
 
 footer {

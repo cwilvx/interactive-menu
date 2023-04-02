@@ -11,7 +11,7 @@
     </div>
     <div class="info">
       <h1 class="company-name">McKimata's<VerifiedSVG /></h1>
-      <br>
+      <br />
       <p><i>Nous vendons de la nourriture de merde, amusez-vous 😹</i></p>
     </div>
   </header>
@@ -29,6 +29,21 @@ import VerifiedSVG from "@/assets/icons/verified.svg";
   height: 20rem;
   align-items: center;
   padding: 2rem;
+  // margin-bottom: 3rem;
+
+  @media screen and (max-width: 628px) {
+    grid-template-columns: 1fr;
+    place-content: center;
+
+    h1, p {
+      text-align: center;
+    }
+
+    .image {
+      display: grid;
+      place-content: center;
+    }
+  }
 
   h1 {
     margin: 0;

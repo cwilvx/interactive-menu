@@ -68,6 +68,7 @@ defineProps<{
   grid-template-columns: 1fr 2fr 2rem;
   align-items: center;
   border: solid transparent;
+  gap: 1rem;
 
   p {
     margin-top: -1rem;
@@ -119,7 +120,7 @@ defineProps<{
 
   .remove {
     display: grid;
-    place-content: center;
+    place-content: flex-end;
 
     svg {
       scale: 1.5;
@@ -129,6 +130,31 @@ defineProps<{
       &:hover {
         color: $theme2;
       }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+    background-color: rgb(247, 223, 191);
+    padding: 1rem;
+    margin: 2rem 0;
+    border: solid 1px rgb(255, 196, 161);
+
+    img {
+      width: 100%;
+    }
+
+    .desc {
+      width: 100%;
+
+      .order-count {
+        width: 100%;
+        grid-template-columns: 3rem 1fr 3rem;
+      }
+    }
+
+    .remove {
+      margin-top: -5rem;
     }
   }
 }

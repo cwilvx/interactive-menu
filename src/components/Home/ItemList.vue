@@ -28,6 +28,8 @@ import items from "@/data/foods";
 defineProps<{
   query: string;
 }>();
+
+console.log(items)
 </script>
 
 <style lang="scss">

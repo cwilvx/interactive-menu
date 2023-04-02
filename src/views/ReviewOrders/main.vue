@@ -53,7 +53,6 @@ const store = useOrderStore();
   }
 
   .checkout {
-    width: 100%;
     height: 3rem;
     cursor: pointer;
   }

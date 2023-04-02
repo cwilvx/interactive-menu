@@ -101,6 +101,8 @@ function submitOrder(item: Item) {
 
 <style lang="scss">
 .product-page {
+  padding-top: 3rem;
+
   .product-display {
     display: grid;
     grid-template-columns: 1fr;

@@ -41,7 +41,7 @@ const selected = ref(1);
 
   .table-list {
     position: relative;
-    width: 30rem;
+    max-width: 30rem;
     margin: 0 auto;
     margin-top: 3rem;
     padding: 1rem;
@@ -49,6 +49,15 @@ const selected = ref(1);
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 3rem;
+
+    @media screen and (max-width: 500px) {
+      gap: 2rem;
+
+      .table {
+        width: 2rem !important;
+        height: 2rem !important;
+      }
+    }
 
     button {
       position: absolute;
@@ -58,13 +67,13 @@ const selected = ref(1);
 
     .table {
       width: 100%;
+      aspect-ratio: 1;
       background-color: $theme;
       border-radius: 50%;
-      aspect-ratio: 1;
       display: grid;
       place-content: center;
       color: white;
-      font-size: xx-large;
+      font-size: large;
       cursor: pointer;
       position: relative;
 

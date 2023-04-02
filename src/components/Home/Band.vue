@@ -34,11 +34,29 @@ function submitQuery() {
   align-items: center;
   margin: 1rem 0;
 
+  @media screen and (max-width: 840px) {
+    grid-template-columns: 1fr;
+
+  }
+
+  @media screen and (max-width: 455px) {
+    h2 {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  
+
   .search-input {
     display: grid;
     grid-template-columns: 1fr max-content;
     gap: 1rem;
     align-items: center;
+    width: 100%;
+
+    @media screen and (max-width: 840px) {
+      grid-template-columns: minmax(10rem, 1fr) max-content !important;
+    }
   }
 
   input {
@@ -47,6 +65,7 @@ function submitQuery() {
     border-radius: 0.5rem;
     outline: none;
     font-size: 1.2rem;
+    min-width: 8rem !important;
   }
 
   button {

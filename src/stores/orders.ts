@@ -46,8 +46,7 @@ export default defineStore("restaurant-orders", {
       this.allOrders[index].count !== 1 ? this.allOrders[index].count-- : null;
     },
     removeOrder(index: number) {
-      this.allOrders = this.allOrders.splice(index, 1);
-      this.allOrders = []
+      this.allOrders.splice(index, 1);
     },
   },
   getters: {

@@ -71,15 +71,6 @@ const store = useOrderStore();
     opacity: 0.8;
   }
 
-  &:hover {
-    svg {
-      opacity: 1;
-      transform: translateY(0);
-      transition: all 0.2s ease-in-out;
-      transition-delay: 0.25s;
-    }
-  }
-
   svg {
     position: absolute;
     bottom: 2rem;
@@ -92,6 +83,26 @@ const store = useOrderStore();
     transform: translateY(1rem);
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+  }
+
+  &:hover {
+    svg {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.2s ease-in-out;
+      transition-delay: 0.25s;
+    }
+  }
+
+  @media screen and (max-width: 840px) {
+    svg {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    img {
+      aspect-ratio: 2/1.25 !important;
+    }
   }
 }
 </style>
