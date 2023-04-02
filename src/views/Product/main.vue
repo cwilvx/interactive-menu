@@ -27,6 +27,8 @@
           <label for="order_count"><b>How many meals?</b></label>
           <input
             type="number"
+            max="10"
+            min="1"
             name="order_count"
             class="order_count rounded-sm"
             v-model="order_count"
