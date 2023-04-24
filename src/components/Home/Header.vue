@@ -12,7 +12,7 @@
     <div class="info">
       <h1 class="company-name">McKimata's<VerifiedSVG /></h1>
       <br />
-      <p><i>Nous vendons de la nourriture de merde, amusez-vous 😹</i></p>
+      <p><i>je savais que tu ferais ça 😹</i></p>
     </div>
   </header>
 </template>
