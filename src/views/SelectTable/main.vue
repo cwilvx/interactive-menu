@@ -17,7 +17,7 @@
         </button>
       </div>
     </div>
-    <button class="finish">Finish</button>
+    <button class="finish" @click="logFinish">Finish</button>
   </div>
 </template>
 
@@ -25,6 +25,15 @@
 import { ref } from "vue";
 
 const selected = ref(1);
+
+function logFinish() {
+  if (selected.value === 1) {
+    alert("Please select a table");
+    return;
+  }
+
+  alert("Your order has been placed!");
+}
 </script>
 
 <style lang="scss">

@@ -24,6 +24,8 @@ export default defineStore("restaurant-orders", {
 
       if (index === -1) {
         this.allOrders.push(order);
+        alert(`${order.count} ${order.name} added to orders`);
+
         return;
       }
 
@@ -34,10 +36,13 @@ export default defineStore("restaurant-orders", {
         getListContents(this.allOrders[index].selected_ingredients)
       ) {
         this.allOrders[index].count++;
+        alert(`${order.count} ${order.name} added to orders`);
+
         return;
       }
 
       this.allOrders.push(order);
+      alert(`${order.count} ${order.name} added to orders`);
     },
     incremementCount(index: number) {
       this.allOrders[index].count++;
