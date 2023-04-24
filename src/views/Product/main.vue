@@ -99,6 +99,14 @@ function getSelectedIngredientsTotalPrice() {
 function submitOrder(item: Item | null) {
   if (!item) return;
 
+  console.log(order_count.value);
+
+  if (Number.isNaN(parseInt(order_count.value as unknown as string))) {
+    console.log("not a number");
+    alert("Please enter a valid meal count");
+    return;
+  }
+
   const order = {
     ...item,
     count: order_count.value,
