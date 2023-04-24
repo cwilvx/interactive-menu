@@ -2,7 +2,7 @@ import { Item } from "@/interfaces";
 import calcPrice from "@/utils/calcPrice";
 import ingredients from "./ingredients";
 
-export default [
+const meals = [
   {
     name: "Tuna poke with fresh vegetables",
     image:
@@ -73,3 +73,5 @@ export default [
   ingredients: ingredients[index].ingredients,
   optional_ingredients: ingredients[index].optional_ingredients,
 })) as Item[];
+
+export default meals;

@@ -9,7 +9,7 @@
       <div class="order-list">
         <OrderCard
           v-for="(order, index) in store.allOrders"
-          :key="order.id"
+          :key="order._id"
           :item="order"
           :index="index"
         />

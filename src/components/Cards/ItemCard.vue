@@ -3,7 +3,7 @@
     class="item-card"
     :to="{
       name: Routes.Product,
-      params: { id: item.id },
+      params: { id: item._id },
     }"
   >
     <div class="image">

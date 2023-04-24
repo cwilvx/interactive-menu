@@ -4,7 +4,7 @@
       :to="{
         name: Routes.Product,
         params: {
-          id: item.id,
+          id: item._id,
         },
       }"
       class="image"
@@ -17,7 +17,7 @@
           :to="{
             name: Routes.Product,
             params: {
-              id: item.id,
+              id: item._id,
             },
           }"
           class="image"

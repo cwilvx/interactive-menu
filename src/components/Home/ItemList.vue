@@ -1,21 +1,21 @@
 <template>
   <div class="item-list">
     <ItemCard
-      v-for="item in items.filter(
+      v-for="item in meals.filter(
         (item) => item.name.toLowerCase().indexOf(query) !== -1
       )"
-      :key="item.id"
+      :key="item._id"
       :item="item"
     />
   </div>
   <h3
     class="no-items"
     v-if="
-      !items.filter((item) => item.name.toLowerCase().indexOf(query) !== -1)
+      !meals.filter((item) => item.name.toLowerCase().indexOf(query) !== -1)
         .length
     "
   >
-  😿 No meals found for your search
+    😿 No meals found for your search
   </h3>
 </template>
 
@@ -23,13 +23,25 @@
 
 <script setup lang="ts">
 import ItemCard from "@/components/Cards/ItemCard.vue";
-import items from "@/data/foods";
+// import items from "@/data/foods";
+
+import { getMeals } from "@/data/fetchers";
+import { onMounted, Ref, ref } from "vue";
+import { Item } from "@/interfaces";
 
 defineProps<{
   query: string;
 }>();
 
-console.log(items)
+const meals: Ref<Item[]> = ref([]);
+
+onMounted(() => {
+  getMeals().then((res) => {
+    meals.value = res;
+  });
+});
+
+// console.log(items);
 </script>
 
 <style lang="scss">

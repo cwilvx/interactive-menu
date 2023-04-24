@@ -1,25 +1,25 @@
 <template>
   <div class="product-page">
-    <div class="product-display">
+    <div class="product-display" v-if="meal">
       <div class="gallery rounded">
         <div class="image">
-          <img class="rounded" :src="item.image" />
+          <img class="rounded" :src="meal.image" />
         </div>
       </div>
       <div class="product-info">
         <section>
           <div class="info">
-            <h1>{{ item.name }}</h1>
+            <h1>{{ meal.name }}</h1>
             <h4 class="price">
-              <b>{{ formatPrice(item.price) }}</b>
+              <b>{{ formatPrice(meal.price) }}</b>
             </h4>
             <p>
-              {{ item.description }}
+              {{ meal.description }}
             </p>
           </div>
           <Ingredients
-            :ingredients="item.ingredients"
-            :optional="item.optional_ingredients"
+            :ingredients="meal.ingredients"
+            :optional="meal.optional_ingredients"
             :selected_optional="selected_optional"
             @addOptionalIngredient="addOptionalIngredient"
             @removeOptionalIngredient="removeOptionalIngredient"
@@ -36,11 +36,11 @@
           />
         </section>
 
-        <button class="add-to-cart" @click="submitOrder(item)">
+        <button class="add-to-cart" @click="submitOrder(meal)">
           <CartSvg /> Add to orders |
           {{
             formatPrice(
-              item.price * order_count + getSelectedIngredientsTotalPrice()
+              meal.price * order_count + getSelectedIngredientsTotalPrice()
             )
           }}
         </button>
@@ -50,10 +50,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, Ref, ref } from "vue";
+import { onMounted, Ref, ref } from "vue";
 import { useRoute } from "vue-router";
 
-import foods from "@/data/foods";
 import useOrderStore from "@/stores/orders";
 
 import CartSvg from "@/assets/icons/cart.svg";
@@ -62,14 +61,20 @@ import { Item } from "@/interfaces";
 import calcIngredientPrice from "@/utils/calcPrice";
 import formatPrice from "@/utils/formatPrice";
 
+import { getMealById } from "@/data/fetchers";
+
 const route = useRoute();
 const store = useOrderStore();
 
+const meal: Ref<Item | null> = ref(null);
+
 const order_count = ref(1);
 
-const item = computed(
-  () => foods.filter((f, index) => f.id.toString() == route.params.id)[0]
-);
+onMounted(() => {
+  getMealById(route.params.id as string).then((res) => {
+    meal.value = res;
+  });
+});
 
 const selected_optional: Ref<string[]> = ref([]);
 
