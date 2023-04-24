@@ -96,7 +96,9 @@ function getSelectedIngredientsTotalPrice() {
   );
 }
 
-function submitOrder(item: Item) {
+function submitOrder(item: Item | null) {
+  if (!item) return;
+
   const order = {
     ...item,
     count: order_count.value,
