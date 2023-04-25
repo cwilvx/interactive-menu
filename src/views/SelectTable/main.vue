@@ -17,22 +17,30 @@
         </button>
       </div>
     </div>
-    <button class="finish" @click="logFinish">Finish</button>
+    <button class="finish" @click="finish">Finish</button>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
+import useOrderStore from "@/stores/orders";
+import { useRouter } from "vue-router";
+
+const store = useOrderStore();
+const router = useRouter();
 
 const selected = ref(1);
 
-function logFinish() {
+function finish() {
   if (selected.value === 1) {
     alert("Please select a table");
     return;
   }
 
+  store.submitOrders(selected.value);
   alert("Your order has been placed!");
+
+  router.push("/");
 }
 </script>
 

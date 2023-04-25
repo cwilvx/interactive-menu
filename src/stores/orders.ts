@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import { Item } from "@/interfaces";
+
 import getTotalPriceStr from "@/utils/getTotalPrice";
+import { addOrder } from "@/data/fetchers";
 
 /**
  * Returns something you can use to compare contents
@@ -13,11 +15,27 @@ function getListContents(list: string[]) {
 
 export default defineStore("restaurant-orders", {
   state: () => ({
+    session_id: "",
     allOrders: <Item[]>[],
+    pendingOrders: <Item[]>[],
   }),
   actions: {
+    generateNewSessionId() {
+      const hour = new Date().toLocaleTimeString("en-US", {
+        hour12: false,
+        hour: "2-digit",
+      });
+
+      console.log(hour);
+
+      if (this.session_id && this.session_id.endsWith(hour)) {
+        return;
+      }
+
+      this.session_id = Math.random().toString(36).substr(2, 9) + "-";
+      this.session_id += hour;
+    },
     addOrder(order: Item) {
-      console.log(order.selected_ingredients);
       const index = this.allOrders.findIndex(
         (item) => item.name === order.name
       );
@@ -53,6 +71,19 @@ export default defineStore("restaurant-orders", {
     removeOrder(index: number) {
       this.allOrders.splice(index, 1);
     },
+    submitOrders(table_number: number) {
+      const order = {
+        session_id: this.session_id,
+        meals: this.allOrders,
+        time: new Date().toString(),
+        table_number,
+      };
+
+      addOrder(order).then((res) => {
+        this.pendingOrders.push(...this.allOrders);
+        this.allOrders = [];
+      });
+    },
   },
   getters: {
     orderCount(): number {
@@ -61,8 +92,20 @@ export default defineStore("restaurant-orders", {
         0
       );
     },
+    pendingOrderCount(): number {
+      return this.pendingOrders.reduce(
+        (acc: number, order: Item) => acc + (order?.count || 0),
+        0
+      );
+    },
     totalPrice(): number {
       return this.allOrders.reduce(
+        (prev, curr) => prev + (getTotalPriceStr(curr, false) as number),
+        0
+      );
+    },
+    totalPendingPrice(): number {
+      return this.pendingOrders.reduce(
         (prev, curr) => prev + (getTotalPriceStr(curr, false) as number),
         0
       );

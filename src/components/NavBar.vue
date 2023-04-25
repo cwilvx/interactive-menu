@@ -2,7 +2,18 @@
   <nav>
     <div class="right"></div>
     <div class="left">
-      <RouterLink to="/review" class="cart">
+      <RouterLink
+        :to="{
+          name: Routes.ReviewOrders,
+          params: {
+            check: 'view',
+          },
+        }"
+        class="cart"
+      >
+        <button>My orders</button>
+      </RouterLink>
+      <RouterLink to="/review/review" class="cart">
         <button>
           <CartSvg class="circular" />
           Review order
@@ -17,6 +28,7 @@
 
 <script setup lang="ts">
 import CartSvg from "@/assets/icons/cart.svg";
+import { Routes } from "@/router";
 import useOrderStore from "@/stores/orders";
 
 const store = useOrderStore();

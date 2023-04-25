@@ -8,9 +8,18 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
+
 import NavBar from "./components/NavBar.vue";
 import Header from "./components/Home/Header.vue";
 import AppFooter from "./components/Footer.vue";
+
+import useOrderStore from "./stores/orders";
+
+onMounted(() => {
+  useOrderStore().generateNewSessionId();
+  console.log(useOrderStore().session_id);
+});
 </script>
 
 <style lang="scss">

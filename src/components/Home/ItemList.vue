@@ -2,7 +2,8 @@
   <div class="item-list">
     <ItemCard
       v-for="item in meals.filter(
-        (item) => item.name.toLowerCase().indexOf(query) !== -1
+        (item) =>
+          item.name.toLowerCase().indexOf(query) !== -1 && item.available
       )"
       :key="item._id"
       :item="item"

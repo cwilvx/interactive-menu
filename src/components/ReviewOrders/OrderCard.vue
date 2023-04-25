@@ -1,5 +1,5 @@
 <template>
-  <div class="order-card rounded">
+  <div class="order-card rounded" :class="{ is_readonly }">
     <RouterLink
       :to="{
         name: Routes.Product,
@@ -24,6 +24,7 @@
         >
           {{ item.name }}</RouterLink
         >
+        {{ is_readonly ? "(x" + item.count + ")" : "" }}
       </h4>
       <p v-if="item.selected_ingredients.length">
         with
@@ -59,6 +60,7 @@ const store = useOrderStore();
 defineProps<{
   item: Item;
   index: number;
+  is_readonly?: boolean;
 }>();
 </script>
 
@@ -156,6 +158,21 @@ defineProps<{
     .remove {
       margin-top: -5rem;
     }
+  }
+}
+
+.order-card.is_readonly {
+  
+  .remove {
+    display: none;
+  }
+
+  img {
+    height: 7rem !important;
+  }
+
+  .order-count {
+    display: none;
   }
 }
 </style>

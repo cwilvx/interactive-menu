@@ -112,6 +112,7 @@ function submitOrder(item: Item | null) {
     count: order_count.value,
     selected_ingredients: selected_optional.value,
   };
+  
   store.addOrder(order);
 }
 </script>
