@@ -349,11 +349,8 @@ function showAllOrders() {
 
 onMounted(() => {
   getOrders().then((res) => {
-    // TODO: FIX SORTING
     orders.value = res;
-    orders.value.sort((a, b) => {
-      return Date.parse(b.time) - Date.parse(a.time);
-    });
+    orders.value = orders.value.reverse();
   });
 });
 </script>

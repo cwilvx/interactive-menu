@@ -25,7 +25,7 @@ const ReviewOrdersRoute = {
 };
 
 const AdminRoute = {
-  path: "/admin",
+  path: "/averysecuredpage",
   name: "AdminsRoute",
   component: AdminsRoute,
 };

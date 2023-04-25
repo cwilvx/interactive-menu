@@ -40,7 +40,7 @@ function finish() {
   store.submitOrders(selected.value);
   alert("Your order has been placed!");
 
-  router.push("/");
+  router.push("/review/view");
 }
 </script>
 
