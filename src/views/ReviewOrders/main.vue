@@ -3,7 +3,7 @@
     <main>
       <h2 class="review-order-heading">
         Your Orders ({{ orderCount(meals) }})
-        <div class="status" v-if="$route.params.check == 'view'">
+        <div class="status" v-if="$route.params.check == 'view' && meals.length">
           Status: {{ order_data.delivered ? "Processing" : "In Queue" }}
         </div>
         <span>{{ formatPrice(totalPrice(meals)) }} </span>
