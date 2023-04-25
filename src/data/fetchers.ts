@@ -1,4 +1,5 @@
 const base_prod = "https://mckima-serveless-api.vercel.app/api/";
+// const base_prod = "http://localhost:3000/api/";
 const base_dev = base_prod;
 
 const url = "https://mckima-serveless-api.vercel.app/api/meals";
@@ -102,5 +103,5 @@ export async function markMealAsAvailable(id: string) {
 export async function getOrderBySessionId(session_id: string) {
   const response = await fetch(`${orders_prod}/${session_id}`);
   const res = await response.json();
-  return res.order;
+  return res.orders;
 }

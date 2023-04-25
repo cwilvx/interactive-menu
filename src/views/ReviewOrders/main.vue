@@ -1,38 +1,43 @@
 <template>
   <div id="review-orders">
-    <main>
+    <main
+      v-for="order in order_data"
+      :key="order._id"
+      style="margin-bottom: 5rem"
+    >
       <h2 class="review-order-heading">
-        Your Orders ({{ orderCount(meals) }})
-        <div class="status" v-if="$route.params.check == 'view' && meals.length">
-          Status: {{ order_data.delivered ? "Processing" : "In Queue" }}
+        <span v-if="!($route.params.check == 'view')">
+          Your Orders ({{ orderCount(order.meals) }})
+        </span>
+        <div
+          class="status"
+          v-if="$route.params.check == 'view' && order.meals.length"
+        >
+          {{ order.delivered ? "Cooking" : "In Queue" }}
         </div>
-        <span>{{ formatPrice(totalPrice(meals)) }} </span>
+        <span>{{ formatPrice(totalPrice(order.meals)) }} </span>
       </h2>
       <hr />
       <div class="order-list">
         <OrderCard
-          v-for="(order, index) in meals"
-          :key="order._id"
-          :item="order"
+          v-for="(o, index) in order.meals"
+          :key="o._id"
+          :item="o"
           :index="index"
           :is_readonly="$route.params.check == 'view'"
         />
       </div>
-      <div class="no-items" v-if="!meals.length">No Orders</div>
+      <div class="no-items" v-if="!order.meals.length">No Orders</div>
       <div class="total-price" :class="store.totalPrice ? 't-center' : ''">
         Total:
-        <b>{{
-          $route.params.check == "view"
-            ? formatPrice(store.totalPendingPrice)
-            : formatPrice(store.totalPrice)
-        }}</b>
+        <b>{{ formatPrice(totalPrice(order.meals)) }}</b>
       </div>
     </main>
     <RouterLink
+      v-if="store.orderCount"
       :to="{
         name: Routes.SelectTable,
       }"
-      v-if="store.orderCount"
       class="checkout button"
       >Proceed to select table</RouterLink
     >
@@ -40,13 +45,15 @@
 </template>
 
 <script setup lang="ts">
-import OrderCard from "@/components/ReviewOrders/OrderCard.vue";
-import { Item } from "@/interfaces";
-import { Routes } from "@/router";
-import useOrderStore from "@/stores/orders";
-import formatPrice from "@/utils/formatPrice";
 import { onMounted, ref } from "vue";
 import { onBeforeRouteUpdate, useRoute } from "vue-router";
+
+import { Routes } from "@/router";
+import { Item } from "@/interfaces";
+import useOrderStore from "@/stores/orders";
+import formatPrice from "@/utils/formatPrice";
+
+import OrderCard from "@/components/ReviewOrders/OrderCard.vue";
 
 import { getOrderBySessionId } from "@/data/fetchers";
 import getTotalPriceStr from "@/utils/getTotalPrice";
@@ -54,14 +61,14 @@ import getTotalPriceStr from "@/utils/getTotalPrice";
 const store = useOrderStore();
 const route = useRoute();
 
-const order_data = ref({
-  delivered: false,
-  meals: [],
-  session_id: "",
-  table_id: "",
-  total_price: 0,
-  _id: "",
-});
+const order_data = ref([
+  {
+    delivered: false,
+    meals: <Item[]>[],
+    session_id: "",
+    _id: "no_id",
+  },
+]);
 
 function orderCount(meals: Item[]): number {
   return meals.reduce(
@@ -77,21 +84,27 @@ function totalPrice(meals: Item[]): number {
   );
 }
 
-const meals = ref<Item[]>([]);
-
 function getOrderItems() {
   if (route.params.check === "view") {
     getOrderBySessionId(store.session_id).then((res) => {
+
       if (res) {
         order_data.value = res;
-        meals.value = res.meals;
       }
     });
 
     return;
   }
+  store.allOrders;
 
-  meals.value = store.allOrders;
+  order_data.value = [
+    {
+      session_id: store.session_id,
+      delivered: false,
+      meals: store.allOrders,
+      _id: "default",
+    },
+  ];
 }
 
 onMounted(() => {
