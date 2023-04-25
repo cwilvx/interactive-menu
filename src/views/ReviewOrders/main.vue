@@ -82,8 +82,10 @@ const meals = ref<Item[]>([]);
 function getOrderItems() {
   if (route.params.check === "view") {
     getOrderBySessionId(store.session_id).then((res) => {
-      order_data.value = res;
-      meals.value = res.meals;
+      if (res) {
+        order_data.value = res;
+        meals.value = res.meals;
+      }
     });
 
     return;
