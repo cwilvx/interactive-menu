@@ -101,7 +101,12 @@ export async function markMealAsAvailable(id: string) {
 }
 
 export async function getOrderBySessionId(session_id: string) {
+  console.log(`${orders_prod}/${session_id}`);
+
   const response = await fetch(`${orders_prod}/${session_id}`);
+
   const res = await response.json();
+  console.log(res);
+
   return res.orders;
 }

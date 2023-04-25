@@ -87,7 +87,8 @@ function totalPrice(meals: Item[]): number {
 function getOrderItems() {
   if (route.params.check === "view") {
     getOrderBySessionId(store.session_id).then((res) => {
-
+      
+      console.log(store.session_id, res)
       if (res) {
         order_data.value = res;
       }
