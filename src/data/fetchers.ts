@@ -1,19 +1,20 @@
-const base_prod = "https://mckima-serveless-api.vercel.app/api/";
+import axios from "axios";
+
 // const base_prod = "http://localhost:3000/api/";
+const base_prod = "https://mckima-serveless-api.vercel.app/api/";
 const base_dev = base_prod;
 
-const url = "https://mckima-serveless-api.vercel.app/api/meals";
 const orders_prod = base_prod + "orders";
 
 export async function getMeals() {
-  const response = await fetch(url);
+  const response = await fetch(base_prod + "meals");
   const res = await response.json();
 
   return res.meals;
 }
 
 export async function getMealById(id: string) {
-  const response = await fetch(`${url}/${id}`);
+  const response = await fetch(`${base_prod}meals/${id}`);
   const res = await response.json();
 
   return res.meal;
@@ -109,4 +110,35 @@ export async function getOrderBySessionId(session_id: string) {
   console.log(res);
 
   return res.orders;
+}
+
+export async function adminLogin(username: string, password: string) {
+  const response = await fetch(`${base_dev}login`, {
+    method: "POST",
+    body: JSON.stringify({ username, password }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
+
+  return response.status;
+}
+
+export async function validateSession() {
+  const response = await fetch(`${base_dev}validate`, {
+    method: "GET",
+    credentials: "include",
+  });
+
+  return response.status;
+}
+
+export async function logout() {
+  const response = await fetch(`${base_dev}logout`, {
+    method: "POST",
+    credentials: "include",
+  });
+
+  return response.status;
 }

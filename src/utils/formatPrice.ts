@@ -1,1 +1,1 @@
-export default (price: number) => `Ksh ${price}.00`;
+export default (price: number) => `Ksh ${price.toLocaleString()}.00`;

@@ -1,5 +1,6 @@
 <template>
   <div class="admin-container">
+    <AdminLoginModal @auth-okay="hideLoginModal" v-if="showLoginModal" />
     <h1 class="heading">
       {{ text }}
 
@@ -216,24 +217,30 @@
 <script setup lang="ts">
 import { onMounted, Ref, ref } from "vue";
 
-import { Item, Order } from "@/interfaces";
 import {
   addMeal,
-  deleteOrder,
-  getOrders,
-  markOrderDelivered,
-  getMeals,
-  editMeal,
   deleteMealById,
+  deleteOrder,
+  editMeal,
+  getMeals,
+  getOrders,
   markMealAsAvailable,
+  markOrderDelivered,
 } from "@/data/fetchers";
+import { Item, Order } from "@/interfaces";
 
-import getTotalPriceStr from "@/utils/getTotalPrice";
-import OrderCard from "@/components/ReviewOrders/OrderCard.vue";
+import { validateSession } from "@/data/fetchers";
 import formatPrice from "@/utils/formatPrice";
+import getTotalPriceStr from "@/utils/getTotalPrice";
+
+import AdminLoginModal from "@/components/AdminLoginModal.vue";
+import OrderCard from "@/components/ReviewOrders/OrderCard.vue";
+
+import useAdminStore from "@/stores/admin";
 
 const orders: Ref<Order[]> = ref([]);
 const text = ref("All orders");
+const admin = useAdminStore();
 
 enum tabs {
   ORDERS,
@@ -241,7 +248,22 @@ enum tabs {
   EDIT_MEAL,
 }
 
+const showLoginModal = ref(false);
+
 const currentTab = ref(tabs.ORDERS);
+
+function nowGetOrders() {
+  getOrders().then((res) => {
+    orders.value = res;
+    orders.value = orders.value.reverse();
+  });
+}
+
+function hideLoginModal() {
+  showLoginModal.value = false;
+  admin.makeAdmin();
+  nowGetOrders();
+}
 
 function switchTab(newTab: tabs) {
   currentTab.value = newTab;
@@ -261,14 +283,12 @@ function setCurrentEditingMealId(id: string) {
 }
 
 function fetchAllMeals() {
-  // fetch all meals and store them in editMealsList
   getMeals().then((res) => {
     editMealsList.value = res;
   });
 }
 
 function getTotalPrice(meals: Item[]) {
-  // use reduce and getTotalPriceStr(number, false) to get the total price
   return meals.reduce((acc, curr) => {
     return acc + (getTotalPriceStr(curr, false) as number);
   }, 0);
@@ -347,11 +367,21 @@ function showAllOrders() {
   });
 }
 
+admin.$subscribe((mutation, state) => {
+  if (state.is_admin) {
+    nowGetOrders();
+  } else {
+    showLoginModal.value = true;
+  }
+});
+
 onMounted(() => {
-  getOrders().then((res) => {
-    orders.value = res;
-    orders.value = orders.value.reverse();
-  });
+  if (!admin.is_admin) {
+    showLoginModal.value = true;
+    return;
+  }
+
+  nowGetOrders();
 });
 </script>
 

@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 
+import useAdminStore from "@/stores/admin";
+
 const HomeView = () => import("@/views/Home");
 const ProductView = () => import("@/views/Product");
 const ReviewOrders = () => import("@/views/ReviewOrders");
@@ -25,7 +27,7 @@ const ReviewOrdersRoute = {
 };
 
 const AdminRoute = {
-  path: "/averysecuredpage",
+  path: "/admin",
   name: "AdminsRoute",
   component: AdminsRoute,
 };

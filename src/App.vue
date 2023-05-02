@@ -16,9 +16,11 @@ import AppFooter from "./components/Footer.vue";
 
 import useOrderStore from "./stores/orders";
 
+import useAdminStore from "./stores/admin";
+
 onMounted(() => {
   useOrderStore().generateNewSessionId();
-  console.log(useOrderStore().session_id);
+  useAdminStore().checkIsAdmin();
 });
 </script>
 

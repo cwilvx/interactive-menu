@@ -1,7 +1,13 @@
 <template>
   <nav>
     <div class="right"></div>
-    <div class="left">
+    <div class="left" v-if="admin.is_admin">
+      Hi, Admin
+      <RouterLink to="" class="cart">
+        <button @click="logoutAdmin">Logout</button>
+      </RouterLink>
+    </div>
+    <div class="left" v-else>
       <RouterLink
         :to="{
           name: Routes.ReviewOrders,
@@ -30,8 +36,21 @@
 import CartSvg from "@/assets/icons/cart.svg";
 import { Routes } from "@/router";
 import useOrderStore from "@/stores/orders";
+import useAdminStore from "@/stores/admin";
+
+import { logout } from "@/data/fetchers";
+import { useRouter } from "vue-router";
 
 const store = useOrderStore();
+const admin = useAdminStore();
+const router = useRouter();
+
+function logoutAdmin() {
+  logout().then(() => {
+    // reload the page
+    router.go(0);
+  });
+}
 </script>
 
 <style lang="scss">
@@ -41,6 +60,7 @@ nav {
   margin-bottom: 1rem;
 
   .left {
+    align-items: center;
     display: flex;
     gap: 1rem;
   }

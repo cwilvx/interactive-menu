@@ -107,12 +107,18 @@ function submitOrder(item: Item | null) {
     return;
   }
 
+  // if order count is > 10, alert and return
+  if (order_count.value > 10) {
+    alert("You can only order a maximum of 10 meals");
+    return;
+  }
+
   const order = {
     ...item,
     count: order_count.value,
     selected_ingredients: selected_optional.value,
   };
-  
+
   store.addOrder(order);
 }
 </script>

@@ -4,6 +4,8 @@ import { Item } from "@/interfaces";
 import getTotalPriceStr from "@/utils/getTotalPrice";
 import { addOrder } from "@/data/fetchers";
 
+import useAdminStore from "./admin";
+
 /**
  * Returns something you can use to compare contents
  * of a list of string.
@@ -36,6 +38,13 @@ export default defineStore("restaurant-orders", {
       this.session_id += hour;
     },
     addOrder(order: Item) {
+      const admin = useAdminStore();
+
+      if (admin.is_admin) {
+        alert("You can't order as an admin");
+        return;
+      }
+
       const index = this.allOrders.findIndex(
         (item) => item.name === order.name
       );
