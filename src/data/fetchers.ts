@@ -1,5 +1,3 @@
-import axios from "axios";
-
 // const base_prod = "http://localhost:3000/api/";
 const base_prod = "https://mckima-serveless-api.vercel.app/api/";
 const base_dev = base_prod;

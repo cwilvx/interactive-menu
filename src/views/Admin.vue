@@ -54,9 +54,9 @@
               opacity: o.delivered ? 0.5 : 1,
             }"
           >
-            Mark as {{ o.delivered ? "un" : "" }}seen
+            Mark as {{ o.delivered ? "not" : "" }} processing
           </button>
-          <button @click="deleteThisOrder(o._id)">Close order</button>
+          <button @click="deleteThisOrder(o._id)">Delete order</button>
         </div>
       </div>
     </div>
